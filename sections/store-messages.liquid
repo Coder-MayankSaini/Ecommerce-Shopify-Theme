@@ -1,0 +1,294 @@
+{%- if section.settings.enable -%}
+{%- liquid
+  assign type = section.settings.announ_type
+  assign scroll_type = section.settings.scroll_type
+  assign speed = section.settings.speed
+  assign size_icon = section.settings.size_icon
+-%}
+<style>
+  .store-messager-bar {
+    background:{%- if section.settings.gradient_bg != blank -%} {{ section.settings.gradient_bg }} {%- else -%} {{ section.settings.background }} {%- endif -%};
+    color:{{ section.settings.text }};
+    --color-body-text-rgb: {{ section.settings.text.red }}, {{ section.settings.text.green }}, {{ section.settings.text.blue }};
+    --g-color-heading: {{ section.settings.text }};
+    --color-body-text : {{ section.settings.text }};
+  }
+  .store-messager-item{
+    position: relative;
+  }
+  @media (min-width:576px) {
+    .store-messager-item:not(:first-child)::before{
+      background-color: {{ section.settings.text }};
+      content: "";
+      width: 1px;
+      position: absolute;
+      left: 0;
+      top: 15%;
+      bottom: 15%;
+      opacity: 0.15;
+    }
+  }
+  .announcement-scroll{
+    grid: auto / auto-flow max-content;
+    justify-content: center;
+    display: grid;
+    overflow: hidden;
+  }
+  
+  .announcement-item{
+    grid: auto / auto-flow auto 5rem;
+    place-items: center;
+    display: grid;
+    animation-duration: {{ speed }}s;
+  }
+  .announcement-dot{
+    width: 4px;
+    height: 4px;
+    display: block;
+    border-radius: 50%;
+    background-color: {{ section.settings.text }};
+  }
+  .announcement-line{
+    width:32px;
+    height: 1px;
+    display: block;
+    background-color: {{ section.settings.text }};
+  }
+  .announcement-item__in .image-content__image{
+      width: {{ size_icon }}px;
+    }
+  .announcement-item__in .link{
+    color: rgba(var(--color-body-text-rgb),1);
+    text-decoration-color: rgba(var(--color-body-text-rgb),1);
+  }
+</style>
+<!-- store-messages.liquid -->
+{% capture messager %}
+{%- render 'style-section' -%}
+<div class="store-messager-bar customstyle{{ section.id }}" data-aos-duration="100" data-section-id="{{ section.id }}">
+
+  {%- if type == 'carousel' -%}
+  <div class="container">
+    <div class="row d-flex align-items-center justify-content-center">
+      {%- for block in section.blocks -%}
+        <div class="col-sm col-12 text-center store-messager-item">
+        {%- if  block.settings.button_link != blank -%}
+        <a  href="{{ block.settings.button_link }}">
+        {%- endif -%}
+        {{ block.settings.code }} 
+        {%- if  block.settings.button_link != blank -%}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+    </div>
+    </div>
+ {%- else -%}
+    <div class="announcement-scroll">
+      {%- for i in (1..10) -%}
+        <span class="announcement-item  {% if scroll_type == 'from-left' %} anim-loop-left {% else %} anim-loop-right {% endif %}">
+        {%- for block in section.blocks -%}
+              <span class="announcement-item__in {{ section.settings.size_text }} d-flex align-items-center">
+                  {%- if  block.settings.button_link != blank -%}
+                  <a  href="{{ block.settings.button_link }}">
+                  {%- endif -%}
+                  {{ block.settings.code }} 
+                  {%- if  block.settings.button_link != blank -%}
+                    </a>
+                  {%- endif -%}
+              </span>
+              <span class="announcement-{{ section.settings.scroll_dot }}"></span>
+        {%- endfor -%}
+      </span>
+    {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+</div>
+{% endcapture %}
+
+{%- if section.settings.enable_homepage -%}
+  {% if template == 'index' %}
+    {{ messager }}
+  {% endif %}
+{% else %}
+  {{ messager }}
+{%- endif -%}
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Store messages",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Store Messages",
+      "info": "These are displayed under the main menu - great for promotions and notices.They are hidden on the home page if the header is transparent."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_homepage",
+      "label": "Enable only home page",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "id": "gradient_bg",
+      "type": "color_background",
+      "label": "Background Gradient"
+    },
+    {
+      "type": "color",
+      "id": "text",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "announ_type",
+      "options": [
+        {
+          "value": "carousel",
+          "label": "Normal"
+        },
+        {
+          "value": "scroll",
+          "label": "Auto - Scrolling"
+        }
+      ],
+      "label": "Type"
+    },
+    {
+      "type": "header",
+      "content": "Auto - Scrolling",
+      "info": "This config only work with Auto - Scrolling"
+    },
+     {
+      "type": "select",
+      "id": "scroll_dot",
+      "default": "dot",
+      "options": [
+        {
+          "value": "dot",
+          "label": "Dot"
+        },
+        {
+          "value": "line",
+          "label": "Line"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "label": "Dot,Line"
+    },
+    {
+      "type": "range",
+      "id": "size_icon",
+      "label": "Icon Size",
+      "unit": "px",
+      "min": 4,
+      "max": 120,
+      "step": 4,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Scrolling Speed",
+      "unit": "s",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "default": 10,
+      "info": "Auto - Scrolling"
+    },
+    {
+      "type": "select",
+      "id": "scroll_type",
+      "default": "from-right",
+      "options": [
+        {
+          "value": "from-left",
+          "label": "From Left"
+        },
+        {
+          "value": "from-right",
+          "label": "From Right"
+        }
+      ],
+      "label": "Scroll Animation",
+      "info": "Auto - Scrolling"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding "
+    },
+    {
+      "type": "text",
+      "id": "paddingsection",
+      "label": "Padding Section",
+      "default": "8px 0px 8px 0px",
+      "info": "Padding: Top Right Bottom Left"
+    },
+    {
+      "type": "text",
+      "id": "paddingmobile",
+      "label": "Padding Section Mobile",
+      "default": "8px 0px 8px 0px",
+      "info": "Padding: Top Right Bottom Left"
+    },
+    {
+      "type": "header",
+      "content": "Section Margin "
+    },
+    {
+      "type": "text",
+      "id": "marginsection",
+      "label": "Margin Section",
+      "default": "0px 0px 0px 0px",
+      "info": "Margin: Top Right Bottom Left"
+    },
+    {
+      "type": "text",
+      "id": "marginmobile",
+      "label": "Margin Mobile",
+      "default": "0px 0px 0px 0px",
+      "info": "Margin: Top Right Bottom Left"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "code",
+          "label": "HTML and Text",
+          "default": "Add important information here"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Link to"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
