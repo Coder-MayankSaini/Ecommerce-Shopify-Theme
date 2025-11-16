@@ -1304,10 +1304,10 @@ window.AjaxCart = (function() {
   cart.prototype.addItemFromForm = function(evt) {
     evt.preventDefault();
 
-    var params = {
+    var hasFileInputs = this.$form.find('input[type="file"]').length > 0;
+    var ajaxOptions = {
       type: 'POST',
       url: '/cart/add.js',
-      data: this.$form.serialize(),
       dataType: 'json',
       success: $.proxy(function(lineItem) {
         this.success(lineItem);
@@ -1317,7 +1317,15 @@ window.AjaxCart = (function() {
       }, this)
     };
 
-    $.ajax(params);
+    if (hasFileInputs) {
+      ajaxOptions.data = new FormData(this.$form[0]);
+      ajaxOptions.processData = false;
+      ajaxOptions.contentType = false;
+    } else {
+      ajaxOptions.data = this.$form.serialize();
+    }
+
+    $.ajax(ajaxOptions);
   };
   
   cart.prototype.success = function(item) {
