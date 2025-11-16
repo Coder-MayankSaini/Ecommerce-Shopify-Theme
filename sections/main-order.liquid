@@ -28,6 +28,33 @@
             <tr class="responsive-table__row" >
               <td data-label="{{ 'customer.order.product' | t }}">
                 {{ line_item.title | link_to: line_item.product.url }}
+                {%- assign property_size = line_item.properties | size -%}
+                {% if property_size > 0 %}
+                  <div class="order-line-item-properties mt-2">
+                    <ul class="list-unstyled mb-0">
+                      {% for property in line_item.properties %}
+                        {% assign first_character_in_key = property.first | truncate: 1, '' %}
+                        {% unless property.last == blank or first_character_in_key == '_' %}
+                          <li class="mb-2">
+                            <strong>{{ property.first }}:</strong>
+                            {% if property.last contains '/uploads/' %}
+                              <a href="{{ property.last }}" target="_blank" rel="noopener">
+                                {{ property.last | split: '/' | last }}
+                              </a>
+                              <div class="order-line-item-properties__preview mt-1">
+                                <img src="{{ property.last }}"
+                                  alt="{{ property.first }}"
+                                  loading="lazy">
+                              </div>
+                            {% else %}
+                              {{ property.last }}
+                            {% endif %}
+                          </li>
+                        {% endunless %}
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
                 {%- if line_item.fulfillment -%}
                 <div class="note">
                   {%- assign created_at = line_item.fulfillment.created_at | date: format: 'month_day_year' -%}
