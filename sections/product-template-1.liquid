@@ -411,6 +411,7 @@
     assign featured_img = current_variant.featured_image | default: product.featured_image 
 
     assign media_style = section.settings.media_style
+    assign needs_upload = product.tags contains 'needs_upload'
   -%}
   <meta itemprop="name" content="{{ product.title }}">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
@@ -601,9 +602,15 @@
                   </span>
                   {%- endif -%}
                 <div class="product-form__quantity-submit pt-1">
-                  <div class="product-form__item product-form__item--quantity">
+                  <div class="product-form__item product-form__item--quantity{% if needs_upload %} product-form__item--quantity-single{% endif %}">
                     <label class="hide" for="Quantity">{{ 'products.product.quantity' | t }}</label>
-                    <input type="number" id="Quantity" name="quantity" value="1" min="1" class="product-form__input product-form__quantity">
+                    <input type="number"
+                           id="Quantity"
+                           name="quantity"
+                           value="1"
+                           min="1"
+                           {% if needs_upload %}max="1" readonly{% endif %}
+                           class="product-form__input product-form__quantity">
                   </div>
                   <div class="product-form__item product-form__item--submit {% unless block.settings.enable_payment_button %} btn-disablebuynow {% endunless %}">
                     <button type="submit"
@@ -626,10 +633,6 @@
                       {{ form | payment_button }}
                       {% if current_variant.available == false %}<style>.shopify-payment-button{display:none}</style>{% endif %}
                       </div>
-                    {% else %}
-                      <p class="product-form__buynow-note small mt-3">
-                        Please use Add to cart to upload your file before checkout.
-                      </p>
                     {% endunless %}
                   {% endif %}
                   </div>
