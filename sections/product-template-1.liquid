@@ -621,10 +621,16 @@
                     </button>
                   </div>
                   {% if block.settings.enable_payment_button %}
-                    <div class="product-form__buynow">
-                    {{ form | payment_button }}
-                    {% if current_variant.available == false %}<style>.shopify-payment-button{display:none}</style>{% endif %}
-                    </div>
+                    {% unless product.tags contains 'needs_upload' %}
+                      <div class="product-form__buynow">
+                      {{ form | payment_button }}
+                      {% if current_variant.available == false %}<style>.shopify-payment-button{display:none}</style>{% endif %}
+                      </div>
+                    {% else %}
+                      <p class="product-form__buynow-note small mt-3">
+                        Please use Add to cart to upload your file before checkout.
+                      </p>
+                    {% endunless %}
                   {% endif %}
                   </div>
                 {%- if block.settings.waitlist -%}
