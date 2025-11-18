@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "policy-page",
+      "settings": {
+        "title": "Privacy Policy",
+        "last_updated": "Last updated: November 18, 2025",
+        "intro": "",
+        "content_snippet": "policy-privacy"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
+

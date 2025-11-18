@@ -162,6 +162,20 @@
     opacity: 1;
     width: 100%;
   }
+  .footer-policy-links {
+    border-top: 1px solid var(--footer-head-border);
+    margin-top: 32px;
+    padding-top: 24px;
+  }
+  .footer-policy-links__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 32px;
+    padding-left: 0;
+  }
+  .footer-policy-links__list .site-footer__list-item {
+    margin-bottom: 0;
+  }
   .site-footer__copyright{
     border-top:1px dashed rgba(255,255,255,.3);
     color:var(--footer-text);
@@ -285,6 +299,10 @@
     }
     .site-footer .disclosure__list{
       text-align: left;
+    }
+    .footer-policy-links__list{
+      flex-direction: column;
+      gap: 6px;
     }
   }
   @media (min-width:991px){
@@ -552,6 +570,37 @@
       </div>
       {%- endfor -%}
     </div>
+    {%- if section.settings.show_policy_links -%}
+      {%- capture policy_links_markup -%}{%- endcapture -%}
+      {%- assign policy_links_count = 0 -%}
+      {%- for policy_index in (1..5) -%}
+        {%- assign label_key = 'policy_link_' | append: policy_index | append: '_label' -%}
+        {%- assign url_key = 'policy_link_' | append: policy_index | append: '_url' -%}
+        {%- assign label_value = section.settings[label_key] -%}
+        {%- assign url_value = section.settings[url_key] -%}
+        {%- if label_value != blank and url_value != blank -%}
+          {%- assign policy_links_count = policy_links_count | plus: 1 -%}
+          {%- capture policy_links_markup -%}
+            {{ policy_links_markup }}
+            <li class="site-footer__list-item"><a href="{{ url_value }}">{{ label_value }}</a></li>
+          {%- endcapture -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if policy_links_count > 0 -%}
+        <div class="row">
+          <div class="col-12">
+            <div class="footer-policy-links site-footer__section text-lg-{{ footer_align_title }}">
+              {%- if section.settings.policy_links_title != blank -%}
+                <h4 class="h5 site-footer__section-title">{{ section.settings.policy_links_title }}</h4>
+              {%- endif -%}
+              <ul class="site-footer__list site-footer-block footer-policy-links__list">
+                {{ policy_links_markup }}
+              </ul>
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
     </div>
   </div>
   <div class="site-footer__copyright" >
@@ -958,6 +1007,82 @@
       "step": 4,
       "unit": " px",
       "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Policy links"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policy_links",
+      "label": "Show policy links row",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "policy_links_title",
+      "label": "Heading",
+      "default": "Customer policies"
+    },
+    {
+      "type": "text",
+      "id": "policy_link_1_label",
+      "label": "Link 1 label",
+      "default": "Return & Refund Policy"
+    },
+    {
+      "type": "url",
+      "id": "policy_link_1_url",
+      "label": "Link 1 URL",
+      "default": "/pages/return-and-refund-policy"
+    },
+    {
+      "type": "text",
+      "id": "policy_link_2_label",
+      "label": "Link 2 label",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "url",
+      "id": "policy_link_2_url",
+      "label": "Link 2 URL",
+      "default": "/pages/privacy-policy"
+    },
+    {
+      "type": "text",
+      "id": "policy_link_3_label",
+      "label": "Link 3 label",
+      "default": "Terms of Service"
+    },
+    {
+      "type": "url",
+      "id": "policy_link_3_url",
+      "label": "Link 3 URL",
+      "default": "/pages/terms-of-service"
+    },
+    {
+      "type": "text",
+      "id": "policy_link_4_label",
+      "label": "Link 4 label",
+      "default": "Shipping Policy"
+    },
+    {
+      "type": "url",
+      "id": "policy_link_4_url",
+      "label": "Link 4 URL",
+      "default": "/pages/shipping-policy"
+    },
+    {
+      "type": "text",
+      "id": "policy_link_5_label",
+      "label": "Link 5 label",
+      "default": "Contact Information"
+    },
+    {
+      "type": "url",
+      "id": "policy_link_5_url",
+      "label": "Link 5 URL",
+      "default": "/pages/contact-information"
     }
   ],
   "blocks": [

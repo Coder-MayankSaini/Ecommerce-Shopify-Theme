@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "policy-page",
+      "settings": {
+        "title": "Contact Information",
+        "last_updated": "",
+        "intro": "",
+        "content_snippet": "policy-contact-info"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
+

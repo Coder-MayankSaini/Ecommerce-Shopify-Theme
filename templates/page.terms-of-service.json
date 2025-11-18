@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "policy-page",
+      "settings": {
+        "title": "Terms of Service",
+        "last_updated": "",
+        "intro": "",
+        "content_snippet": "policy-terms"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
+

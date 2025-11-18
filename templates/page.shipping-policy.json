@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "policy-page",
+      "settings": {
+        "title": "Shipping Policy",
+        "last_updated": "",
+        "intro": "",
+        "content_snippet": "policy-shipping"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
+

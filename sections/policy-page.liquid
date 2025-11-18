@@ -1,0 +1,183 @@
+<!-- policy-page.liquid -->
+<style>
+  .policy-page .policy-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+    padding: 48px;
+  }
+  .policy-page .policy-title {
+    margin-bottom: 12px;
+  }
+  .policy-page .policy-updated {
+    font-size: 0.95rem;
+    color: rgba(var(--color-body-text, 17, 24, 39), 0.8);
+    margin-bottom: 24px;
+  }
+  .policy-page .policy-intro {
+    margin-bottom: 32px;
+  }
+  .policy-page .policy-body h2,
+  .policy-page .policy-body h3,
+  .policy-page .policy-body h4 {
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+  .policy-page .policy-body ul {
+    padding-left: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  .policy-page .policy-body li {
+    margin-bottom: 0.5rem;
+  }
+  @media (max-width: 749px) {
+    .policy-page .policy-card {
+      padding: 28px 20px;
+      border-radius: 12px;
+    }
+  }
+</style>
+<div class="policy-page customstyle{{ section.id }}" data-section-type="policy-page" data-section-id="{{ section.id }}" data-aos="{{ section.settings.animation }}">
+  <div class="{{ section.settings.setwidth }}">
+    {%- render 'style-section' -%}
+    <article class="policy-card">
+      {%- if section.settings.show_title -%}
+        <h1 class="policy-title h2">{{ section.settings.title | default: page.title }}</h1>
+      {%- endif -%}
+      {%- if section.settings.last_updated != blank -%}
+        <p class="policy-updated">{{ section.settings.last_updated }}</p>
+      {%- endif -%}
+      {%- if section.settings.intro != blank -%}
+        <div class="policy-intro rte">
+          {{ section.settings.intro }}
+        </div>
+      {%- endif -%}
+      <div class="policy-body rte">
+        {%- assign snippet_handle = section.settings.content_snippet -%}
+        {%- if snippet_handle != blank -%}
+          {%- render snippet_handle -%}
+        {%- else -%}
+          <p>{{ 'sections.general.no_content' | t }}</p>
+        {%- endif -%}
+      </div>
+    </article>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Policy page",
+  "settings": [
+    {
+      "type": "select",
+      "id": "animation",
+      "label": "Animation",
+      "default": "",
+      "options": [
+        { "value": "", "label": "None" },
+        { "value": "fade", "label": "Fade" },
+        { "value": "fade-up", "label": "Fade up" },
+        { "value": "fade-down", "label": "Fade down" },
+        { "value": "fade-left", "label": "Fade left" },
+        { "value": "fade-right", "label": "Fade right" },
+        { "value": "slide-up", "label": "Slide up" },
+        { "value": "slide-down", "label": "Slide down" },
+        { "value": "zoom-in", "label": "Zoom in" },
+        { "value": "zoom-out", "label": "Zoom out" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "setwidth",
+      "label": "Width",
+      "default": "container",
+      "options": [
+        { "value": "container", "label": "Box" },
+        { "value": "container-fluid", "label": "Container fluid" },
+        { "value": "full", "label": "Full" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_section",
+      "label": "Background image"
+    },
+    {
+      "type": "color",
+      "id": "bgsection",
+      "label": "Background color",
+      "default": "#f7f7f7"
+    },
+    {
+      "type": "text",
+      "id": "paddingsection",
+      "label": "Padding",
+      "default": "64px 0 64px 0",
+      "info": "Top Right Bottom Left"
+    },
+    {
+      "type": "text",
+      "id": "paddingmobile",
+      "label": "Padding (mobile)",
+      "default": "48px 0 48px 0",
+      "info": "Top Right Bottom Left"
+    },
+    {
+      "type": "text",
+      "id": "marginsection",
+      "label": "Margin",
+      "default": "0 0 0 0",
+      "info": "Top Right Bottom Left"
+    },
+    {
+      "type": "text",
+      "id": "marginmobile",
+      "label": "Margin (mobile)",
+      "default": "0 0 0 0",
+      "info": "Top Right Bottom Left"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Override title"
+    },
+    {
+      "type": "text",
+      "id": "last_updated",
+      "label": "Last updated label",
+      "info": "Example: Last updated: November 18, 2025"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro text"
+    },
+    {
+      "type": "select",
+      "id": "content_snippet",
+      "label": "Content snippet",
+      "default": "",
+      "options": [
+        { "value": "", "label": "Select snippet" },
+        { "value": "policy-return-refund", "label": "Return & Refund Policy" },
+        { "value": "policy-privacy", "label": "Privacy Policy" },
+        { "value": "policy-terms", "label": "Terms of Service" },
+        { "value": "policy-shipping", "label": "Shipping Policy" },
+        { "value": "policy-contact-info", "label": "Contact Information" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Policy page"
+    }
+  ]
+}
+{% endschema %}
+
