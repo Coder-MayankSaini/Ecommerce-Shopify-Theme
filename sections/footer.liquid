@@ -571,13 +571,18 @@
       {%- endfor -%}
     </div>
     {%- if section.settings.show_policy_links -%}
+      {%- assign policy_default_labels = "Return & Refund Policy|Privacy Policy|Terms of Service|Shipping Policy|Contact Information" | split: "|" -%}
+      {%- assign policy_default_urls = "/pages/return-and-refund-policy|/pages/privacy-policy|/pages/terms-of-service|/pages/shipping-policy|/pages/contact-information" | split: "|" -%}
       {%- capture policy_links_markup -%}{%- endcapture -%}
       {%- assign policy_links_count = 0 -%}
       {%- for policy_index in (1..5) -%}
+        {%- assign loop_index = forloop.index0 -%}
+        {%- assign fallback_label = policy_default_labels[loop_index] -%}
+        {%- assign fallback_url = policy_default_urls[loop_index] -%}
         {%- assign label_key = 'policy_link_' | append: policy_index | append: '_label' -%}
         {%- assign url_key = 'policy_link_' | append: policy_index | append: '_url' -%}
-        {%- assign label_value = section.settings[label_key] -%}
-        {%- assign url_value = section.settings[url_key] -%}
+        {%- assign label_value = section.settings[label_key] | default: fallback_label -%}
+        {%- assign url_value = section.settings[url_key] | default: fallback_url -%}
         {%- if label_value != blank and url_value != blank -%}
           {%- assign policy_links_count = policy_links_count | plus: 1 -%}
           {%- capture policy_links_markup -%}
