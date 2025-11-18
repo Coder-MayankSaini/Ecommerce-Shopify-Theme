@@ -56,6 +56,8 @@
         {%- assign snippet_handle = section.settings.content_snippet -%}
         {%- if snippet_handle != blank -%}
           {%- render snippet_handle -%}
+        {%- elsif page.content != blank -%}
+          {{ page.content }}
         {%- else -%}
           <p>{{ 'sections.general.no_content' | t }}</p>
         {%- endif -%}
