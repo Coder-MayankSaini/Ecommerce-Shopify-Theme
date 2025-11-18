@@ -2486,7 +2486,19 @@
           "padding_top": 80,
           "padding_bottom": 20,
           "m_padding_top": 48,
-          "m_padding_bottom": 28
+        "m_padding_bottom": 28,
+        "show_policy_links": true,
+        "policy_links_title": "Policies",
+        "policy_link_1_label": "Return & Refund Policy",
+        "policy_link_1_url": "/pages/return-and-refund-policy",
+        "policy_link_2_label": "Privacy Policy",
+        "policy_link_2_url": "/pages/privacy-policy",
+        "policy_link_3_label": "Terms of Service",
+        "policy_link_3_url": "/pages/terms-of-service",
+        "policy_link_4_label": "Shipping Policy",
+        "policy_link_4_url": "/pages/shipping-policy",
+        "policy_link_5_label": "Contact Information",
+        "policy_link_5_url": "/pages/contact-information"
         }
       },
       "store-messages": {
