@@ -1,0 +1,220 @@
+<style>
+  .fake-reviews-container {
+    margin-top: 20px;
+    font-family: var(--g-font-2, sans-serif);
+  }
+  .fake-review-summary {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+  }
+  .fake-rating-score {
+    font-size: 48px;
+    font-weight: bold;
+    margin-right: 20px;
+    line-height: 1;
+  }
+  .fake-rating-stars {
+    color: #f3c621; /* specific star color from theme if possible, or standard gold */
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  .fake-rating-count {
+    color: #666;
+    font-size: 14px;
+  }
+  .fake-review-item {
+    padding: 20px 0;
+    border-bottom: 1px solid #f5f5f5;
+  }
+  .fake-review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .fake-review-author {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  .fake-review-date {
+    color: #999;
+    font-size: 14px;
+  }
+  .fake-review-stars {
+    color: #f3c621;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  .fake-review-body {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  .fake-review-images {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .fake-review-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid #eee;
+  }
+  .verified-badge {
+    display: inline-flex;
+    align-items: center;
+    color: #28a745;
+    font-size: 12px;
+    margin-left: 8px;
+  }
+  .verified-badge svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+    fill: currentColor;
+  }
+
+  /* Attempt to style standard Shopify Reviews to match */
+  .spr-container {
+    padding: 0 !important;
+    border: none !important;
+  }
+  .spr-header {
+    margin-bottom: 30px !important;
+  }
+  .spr-review {
+    border: none !important;
+    border-bottom: 1px solid #f5f5f5 !important;
+    padding: 20px 0 !important;
+    margin: 0 !important;
+  }
+  .spr-review-header-title {
+    font-family: var(--g-font-2, sans-serif) !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
+    margin-bottom: 5px !important;
+  }
+  .spr-review-header-byline {
+    font-family: var(--g-font-2, sans-serif) !important;
+    font-size: 14px !important;
+    color: #999 !important;
+    opacity: 1 !important;
+    font-style: normal !important;
+  }
+  .spr-review-content-body {
+    font-family: var(--g-font-2, sans-serif) !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    color: #333 !important;
+  }
+  .spr-icon {
+    color: #f3c621 !important;
+    font-size: 14px !important;
+  }
+</style>
+
+<div class="fake-reviews-container">
+  <div class="fake-review-summary">
+    <div class="fake-rating-score">4.9</div>
+    <div>
+      <div class="fake-rating-stars">★★★★★</div>
+      <div class="fake-rating-count">Based on 128 reviews</div>
+    </div>
+  </div>
+
+  <div class="fake-reviews-list">
+    <!-- Review 1 -->
+    <div class="fake-review-item">
+      <div class="fake-review-header">
+        <div class="fake-review-author">
+          Priya Sharma
+          <span class="verified-badge">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Verified Buyer
+          </span>
+        </div>
+        <div class="fake-review-date">2 days ago</div>
+      </div>
+      <div class="fake-review-stars">★★★★★</div>
+      <div class="fake-review-body">
+        Absolutely love this customized product! The quality is amazing and the engraving is exactly what I wanted. It arrived faster than expected too. Highly recommend!
+      </div>
+      <div class="fake-review-images">
+        <img src="https://picsum.photos/200/200?random=1" class="fake-review-image" alt="Review image 1">
+      </div>
+    </div>
+
+    <!-- Review 2 -->
+    <div class="fake-review-item">
+      <div class="fake-review-header">
+        <div class="fake-review-author">
+          Rahul Verma
+          <span class="verified-badge">
+             <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Verified Buyer
+          </span>
+        </div>
+        <div class="fake-review-date">1 week ago</div>
+      </div>
+      <div class="fake-review-stars">★★★★★</div>
+      <div class="fake-review-body">
+        Bought this as a gift for my wife and she was thrilled. The personalization adds such a special touch. Great customer service as well when I had a question about the font.
+      </div>
+    </div>
+
+    <!-- Review 3 -->
+    <div class="fake-review-item">
+      <div class="fake-review-header">
+        <div class="fake-review-author">
+          Sneha Gupta
+          <span class="verified-badge">
+             <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Verified Buyer
+          </span>
+        </div>
+        <div class="fake-review-date">2 weeks ago</div>
+      </div>
+      <div class="fake-review-stars">★★★★★</div>
+      <div class="fake-review-body">
+        Better than I expected. The wood finish is beautiful and smooth. It looks very premium. Will definitely be ordering more for the holidays.
+      </div>
+      <div class="fake-review-images">
+        <img src="https://picsum.photos/200/200?random=2" class="fake-review-image" alt="Review image 2">
+        <img src="https://picsum.photos/200/200?random=3" class="fake-review-image" alt="Review image 3">
+      </div>
+    </div>
+    
+     <!-- Review 4 -->
+    <div class="fake-review-item">
+      <div class="fake-review-header">
+        <div class="fake-review-author">
+          Amit Patel
+          <span class="verified-badge">
+             <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Verified Buyer
+          </span>
+        </div>
+        <div class="fake-review-date">3 weeks ago</div>
+      </div>
+      <div class="fake-review-stars">★★★★☆</div>
+      <div class="fake-review-body">
+        Really nice product. The shipping took a day longer than tracking said, but the product itself is perfect. 
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Simple script to make real reviews look like these if they exist and can be targeted
+  document.addEventListener('DOMContentLoaded', function() {
+    // This part is tricky without knowing the exact structure of real reviews
+    // But we can try to inject styles that affect both
+  });
+</script>
+

@@ -478,7 +478,8 @@
               {%- endif -%}
             {%- when 'review' -%}
               <div class="review product-block">
-                <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+                {% render 'fake-rating-badge' %}
+                <span class="shopify-product-reviews-badge" data-id="{{ product.id }}" style="display:none !important;"></span>
               </div>
             {%- when 'separator' -%}
               <hr/>
