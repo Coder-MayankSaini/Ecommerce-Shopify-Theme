@@ -1,4 +1,25 @@
+{% comment %} Random Logic based on Product ID - Must match snippets/fake-reviews.liquid {% endcomment %}
+{% assign product_id_num = product.id | default: 123456789 %}
+{% assign random_seed = product_id_num | modulo: 1000 %}
+
+{% comment %} Calculate Rating {% endcomment %}
+{% assign rating_mod = random_seed | modulo: 6 %}
+{% case rating_mod %}
+  {% when 0 %}{% assign rating_score = 4.8 %}
+  {% when 1 %}{% assign rating_score = 4.9 %}
+  {% when 2 %}{% assign rating_score = 5.0 %}
+  {% when 3 %}{% assign rating_score = 4.7 %}
+  {% when 4 %}{% assign rating_score = 4.6 %}
+  {% else %}{% assign rating_score = 4.9 %}
+{% endcase %}
+
+{% comment %} Calculate Review Count {% endcomment %}
+{% assign count_mod = random_seed | modulo: 125 %}
+{% assign review_count = 25 | plus: count_mod %}
+
 <div class="fake-rating-badge" style="display: flex; align-items: center; margin-bottom: 10px;">
-  <span class="fake-stars" style="color: #f3c621; font-size: 16px; margin-right: 5px;">★★★★★</span>
-  <span class="fake-text" style="color: #666; font-size: 14px;">(128 reviews)</span>
+  <span class="fake-stars" style="color: #f3c621; font-size: 16px; margin-right: 5px;">
+    {% if rating_score == 5.0 %}★★★★★{% else %}★★★★☆{% endif %}
+  </span>
+  <span class="fake-text" style="color: #666; font-size: 14px;">({{ review_count }} reviews)</span>
 </div>

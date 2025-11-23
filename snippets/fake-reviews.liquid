@@ -1,3 +1,41 @@
+{% comment %}
+  Fake Reviews Data and Logic
+{% endcomment %}
+
+{% assign names_string = "Priya Sharma,Rahul Verma,Sneha Gupta,Amit Patel,Anjali Singh,Vikram Malhotra,Pooja Reddy,Karan Mehta,Neha Kapoor,Aditya Joshi,Riya Jain,Manish Kumar,Tanvi Saxena,Rohan Das,Isha Agarwal,Deepak Mishra,Meera Nair,Arjun Rao,Sonal Chauhan,Varun Bhatia" %}
+{% assign names = names_string | split: "," %}
+
+{% assign titles_string = "Great product!,Loved it,Amazing quality,Worth the money,Fantastic,Highly recommended,Good buy,Very satisfied,Exceeded expectations,Nice but...,Perfect gift,Impressed,Quality could be better,Fast shipping,Beautiful,Just what I wanted,Will buy again,Decent,Five stars,So happy" %}
+{% assign titles = titles_string | split: "," %}
+
+{% assign bodies_string = "Absolutely love this customized product! The quality is amazing and the engraving is exactly what I wanted. It arrived faster than expected too. Highly recommend!|Bought this as a gift for my wife and she was thrilled. The personalization adds such a special touch. Great customer service as well when I had a question about the font.|Better than I expected. The wood finish is beautiful and smooth. It looks very premium. Will definitely be ordering more for the holidays.|Really nice product. The shipping took a day longer than tracking said, but the product itself is perfect.|I was a bit skeptical at first, but the quality blew me away. The customization is very precise.|The product is good, but the packaging was a bit damaged. Luckily the item was safe.|Amazing craftsmanship. You can tell they put effort into making these. A+ service.|I ordered this for my parents' anniversary and they loved it. The photo quality on the wood is surprisingly clear.|Great value for the price. I've seen similar items go for double the cost.|It's okay. The color is slightly different than the picture, but still looks nice.|One of the best customized gifts I've bought online. Very hassle-free process.|Fast delivery and good quality. Can't ask for more.|The engraving is a bit lighter than I hoped, but readable. Overall a decent purchase.|So beautiful! I keep getting compliments on it.|Simple, elegant, and personalized. Just perfect.|I had a issue with my order and the support team fixed it immediately. Great service.|Product feels very sturdy and durable. Good job.|The personalization makes it so unique. I'm buying one for myself now.|Quick turnaround time for a custom item. Very impressed.|Love it! Will recommend to all my friends." %}
+{% assign bodies = bodies_string | split: "|" %}
+
+{% comment %} Random Logic based on Product ID {% endcomment %}
+{% assign product_id_num = product.id | default: 123456789 %}
+{% assign random_seed = product_id_num | modulo: 1000 %}
+
+{% comment %} Calculate Rating: 4.5 to 5.0 {% endcomment %}
+{% assign rating_decimal = random_seed | modulo: 5 %}
+{% assign rating_score = 4.5 | plus: rating_decimal | divided_by: 10.0 | plus: 4.5 %} 
+{% comment %} Fix: 4.5 + (0..4)/10 = 4.5 + 0.0..0.4 = 4.5..4.9. Let's just do explicit mapping {% endcomment %}
+{% assign rating_mod = random_seed | modulo: 6 %}
+{% case rating_mod %}
+  {% when 0 %}{% assign rating_score = 4.8 %}
+  {% when 1 %}{% assign rating_score = 4.9 %}
+  {% when 2 %}{% assign rating_score = 5.0 %}
+  {% when 3 %}{% assign rating_score = 4.7 %}
+  {% when 4 %}{% assign rating_score = 4.6 %}
+  {% else %}{% assign rating_score = 4.9 %}
+{% endcase %}
+
+{% comment %} Calculate Review Count: 25 to 150 {% endcomment %}
+{% assign count_mod = random_seed | modulo: 125 %}
+{% assign review_count = 25 | plus: count_mod %}
+
+{% comment %} Select 3 to 5 reviews {% endcomment %}
+{% assign num_reviews_to_show = random_seed | modulo: 3 | plus: 3 %}
+
 <style>
   .fake-reviews-container {
     margin-top: 20px;
@@ -17,7 +55,7 @@
     line-height: 1;
   }
   .fake-rating-stars {
-    color: #f3c621; /* specific star color from theme if possible, or standard gold */
+    color: #f3c621;
     font-size: 20px;
     margin-bottom: 5px;
   }
@@ -79,142 +117,64 @@
     margin-right: 4px;
     fill: currentColor;
   }
-
-  /* Attempt to style standard Shopify Reviews to match */
-  .spr-container {
-    padding: 0 !important;
-    border: none !important;
-  }
-  .spr-header {
-    margin-bottom: 30px !important;
-  }
-  .spr-review {
-    border: none !important;
-    border-bottom: 1px solid #f5f5f5 !important;
-    padding: 20px 0 !important;
-    margin: 0 !important;
-  }
-  .spr-review-header-title {
-    font-family: var(--g-font-2, sans-serif) !important;
-    font-weight: bold !important;
-    font-size: 16px !important;
-    margin-bottom: 5px !important;
-  }
-  .spr-review-header-byline {
-    font-family: var(--g-font-2, sans-serif) !important;
-    font-size: 14px !important;
-    color: #999 !important;
-    opacity: 1 !important;
-    font-style: normal !important;
-  }
-  .spr-review-content-body {
-    font-family: var(--g-font-2, sans-serif) !important;
-    font-size: 15px !important;
-    line-height: 1.6 !important;
-    color: #333 !important;
-  }
-  .spr-icon {
-    color: #f3c621 !important;
-    font-size: 14px !important;
-  }
+  
+  /* Standard Shopify Reviews Compatibility */
+  .spr-container { padding: 0 !important; border: none !important; }
+  .spr-header { margin-bottom: 30px !important; }
+  .spr-review { border: none !important; border-bottom: 1px solid #f5f5f5 !important; padding: 20px 0 !important; margin: 0 !important; }
+  .spr-review-header-title { font-family: var(--g-font-2, sans-serif) !important; font-weight: bold !important; font-size: 16px !important; margin-bottom: 5px !important; }
+  .spr-review-header-byline { font-family: var(--g-font-2, sans-serif) !important; font-size: 14px !important; color: #999 !important; opacity: 1 !important; font-style: normal !important; }
+  .spr-review-content-body { font-family: var(--g-font-2, sans-serif) !important; font-size: 15px !important; line-height: 1.6 !important; color: #333 !important; }
+  .spr-icon { color: #f3c621 !important; font-size: 14px !important; }
 </style>
 
 <div class="fake-reviews-container">
   <div class="fake-review-summary">
-    <div class="fake-rating-score">4.9</div>
+    <div class="fake-rating-score">{{ rating_score }}</div>
     <div>
-      <div class="fake-rating-stars">★★★★★</div>
-      <div class="fake-rating-count">Based on 128 reviews</div>
+      <div class="fake-rating-stars">
+        {% if rating_score == 5.0 %}★★★★★{% else %}★★★★☆{% endif %}
+      </div>
+      <div class="fake-rating-count">Based on {{ review_count }} reviews</div>
     </div>
   </div>
 
   <div class="fake-reviews-list">
-    <!-- Review 1 -->
-    <div class="fake-review-item">
-      <div class="fake-review-header">
-        <div class="fake-review-author">
-          Priya Sharma
-          <span class="verified-badge">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            Verified Buyer
-          </span>
+    {% for i in (1..num_reviews_to_show) %}
+      {% comment %} Pseudo-random index selection {% endcomment %}
+      {% assign index_seed = random_seed | plus: i | times: 17 %}
+      {% assign name_index = index_seed | modulo: names.size %}
+      {% assign title_index = index_seed | modulo: titles.size %}
+      {% assign body_index = index_seed | modulo: bodies.size %}
+      
+      {% comment %} Date logic: 1 to 30 days ago {% endcomment %}
+      {% assign days_ago = index_seed | modulo: 30 | plus: 1 %}
+      
+      {% comment %} Image logic: Show image for 1 in 3 reviews {% endcomment %}
+      {% assign show_image = index_seed | modulo: 3 %}
+      
+      <div class="fake-review-item">
+        <div class="fake-review-header">
+          <div class="fake-review-author">
+            {{ names[name_index] }}
+            <span class="verified-badge">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              Verified Buyer
+            </span>
+          </div>
+          <div class="fake-review-date">{{ days_ago }} {% if days_ago == 1 %}day{% else %}days{% endif %} ago</div>
         </div>
-        <div class="fake-review-date">2 days ago</div>
-      </div>
-      <div class="fake-review-stars">★★★★★</div>
-      <div class="fake-review-body">
-        Absolutely love this customized product! The quality is amazing and the engraving is exactly what I wanted. It arrived faster than expected too. Highly recommend!
-      </div>
-      <div class="fake-review-images">
-        <img src="https://picsum.photos/200/200?random=1" class="fake-review-image" alt="Review image 1">
-      </div>
-    </div>
-
-    <!-- Review 2 -->
-    <div class="fake-review-item">
-      <div class="fake-review-header">
-        <div class="fake-review-author">
-          Rahul Verma
-          <span class="verified-badge">
-             <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            Verified Buyer
-          </span>
+        <div class="fake-review-stars">★★★★★</div>
+        <div class="fake-review-body">
+          <strong>{{ titles[title_index] }}</strong><br>
+          {{ bodies[body_index] }}
         </div>
-        <div class="fake-review-date">1 week ago</div>
-      </div>
-      <div class="fake-review-stars">★★★★★</div>
-      <div class="fake-review-body">
-        Bought this as a gift for my wife and she was thrilled. The personalization adds such a special touch. Great customer service as well when I had a question about the font.
-      </div>
-    </div>
-
-    <!-- Review 3 -->
-    <div class="fake-review-item">
-      <div class="fake-review-header">
-        <div class="fake-review-author">
-          Sneha Gupta
-          <span class="verified-badge">
-             <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            Verified Buyer
-          </span>
+        {% if show_image == 0 %}
+        <div class="fake-review-images">
+          <img src="https://picsum.photos/200/200?random={{ index_seed }}" class="fake-review-image" alt="Review image">
         </div>
-        <div class="fake-review-date">2 weeks ago</div>
+        {% endif %}
       </div>
-      <div class="fake-review-stars">★★★★★</div>
-      <div class="fake-review-body">
-        Better than I expected. The wood finish is beautiful and smooth. It looks very premium. Will definitely be ordering more for the holidays.
-      </div>
-      <div class="fake-review-images">
-        <img src="https://picsum.photos/200/200?random=2" class="fake-review-image" alt="Review image 2">
-        <img src="https://picsum.photos/200/200?random=3" class="fake-review-image" alt="Review image 3">
-      </div>
-    </div>
-    
-     <!-- Review 4 -->
-    <div class="fake-review-item">
-      <div class="fake-review-header">
-        <div class="fake-review-author">
-          Amit Patel
-          <span class="verified-badge">
-             <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            Verified Buyer
-          </span>
-        </div>
-        <div class="fake-review-date">3 weeks ago</div>
-      </div>
-      <div class="fake-review-stars">★★★★☆</div>
-      <div class="fake-review-body">
-        Really nice product. The shipping took a day longer than tracking said, but the product itself is perfect. 
-      </div>
-    </div>
+    {% endfor %}
   </div>
 </div>
-
-<script>
-  // Simple script to make real reviews look like these if they exist and can be targeted
-  document.addEventListener('DOMContentLoaded', function() {
-    // This part is tricky without knowing the exact structure of real reviews
-    // But we can try to inject styles that affect both
-  });
-</script>
-
