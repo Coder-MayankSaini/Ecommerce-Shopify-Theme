@@ -172,6 +172,10 @@
             "trust-heading": "Guarantee safe checkout",
             "width_image": 66
           }
+        },
+        "judge_me_reviews_preview_badge_kMFM4m": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
         }
       },
       "block_order": [
@@ -195,7 +199,8 @@
         "2d534ed0-517d-48ca-8370-8659965f32c4",
         "a405ef88-bdbe-486d-9fb3-6c91aa4e1509",
         "51f9d856-95f4-4741-bf4d-afe15438ff29",
-        "883720d7-3346-4495-85a0-add8b3d7a51f"
+        "883720d7-3346-4495-85a0-add8b3d7a51f",
+        "judge_me_reviews_preview_badge_kMFM4m"
       ],
       "settings": {
         "setwidth": "container",
