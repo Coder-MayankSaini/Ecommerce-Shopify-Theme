@@ -18,6 +18,10 @@
             "e_label": true
           }
         },
+        "custom-review-block-main": {
+          "type": "review",
+          "settings": {}
+        },
         "c5c11045-e3b5-47e4-80d1-25e86ec844cc": {
           "type": "price",
           "settings": {}
@@ -180,6 +184,7 @@
       },
       "block_order": [
         "989bce2f-7961-4267-8e6c-40ff4bb0ed64",
+        "custom-review-block-main",
         "areviews_reviews_importer_areviews_title_rating_3E732A",
         "c5c11045-e3b5-47e4-80d1-25e86ec844cc",
         "1affb493-1e14-4893-9876-be8d348ee475",
@@ -569,8 +574,8 @@
   },
   "order": [
     "main",
-    "product-requently",
     "product-content",
+    "product-requently",
     "c5690cdb-c04d-45fd-9c6c-cfee011363ca",
     "f9d11058-e5e4-4a6a-8134-4c101e672497",
     "bcb1cba3-80fc-49a2-a033-40cf0618e9c8",
