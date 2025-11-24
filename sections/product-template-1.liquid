@@ -453,7 +453,7 @@
               <h1 itemprop="name" class="product-single__title">
                 {{ product.title }}
               </h1>
-              {% render 'custom-rating-badge' %}
+              {% render 'custom-rating-badge', product: product %}
             </div>
             {%- when 'shortdesc' -%}
               {% if product.metafields.info.shortdesc != blank %}
@@ -478,7 +478,7 @@
                 {{ product.description }}
               </div>
               {%- endif -%}
-            {%- when 'review' -%}[
+            {%- when 'review' -%}
               <div class="review product-block">
                 <span class="shopify-product-reviews-badge" data-id="{{ product.id }}" style="display:none !important;"></span>
               </div>
