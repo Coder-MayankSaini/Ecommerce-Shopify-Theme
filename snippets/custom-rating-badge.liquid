@@ -17,6 +17,13 @@
 {% assign count_mod = random_seed | modulo: 125 %}
 {% assign review_count = 25 | plus: count_mod %}
 
+{%- if rating_score == blank -%}
+  {% assign rating_score = 4.8 %}
+{%- endif -%}
+{%- if review_count == blank -%}
+  {% assign review_count = 113 %}
+{%- endif -%}
+
 <div class="custom-rating-badge" style="display: flex; align-items: center; margin-bottom: 10px;">
   <span class="custom-stars" style="color: #f3c621; font-size: 16px; margin-right: 5px;">
     {% if rating_score == 5.0 %}★★★★★{% else %}★★★★☆{% endif %}
