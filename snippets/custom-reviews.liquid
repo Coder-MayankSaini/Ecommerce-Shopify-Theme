@@ -37,66 +37,66 @@
 {% assign num_reviews_to_show = random_seed | modulo: 3 | plus: 3 %}
 
 <style>
-  .fake-reviews-container {
+  .custom-reviews-container {
     margin-top: 20px;
     font-family: var(--g-font-2, sans-serif);
   }
-  .fake-review-summary {
+  .custom-review-summary {
     display: flex;
     align-items: center;
     margin-bottom: 30px;
     padding-bottom: 20px;
     border-bottom: 1px solid #eee;
   }
-  .fake-rating-score {
+  .custom-rating-score {
     font-size: 48px;
     font-weight: bold;
     margin-right: 20px;
     line-height: 1;
   }
-  .fake-rating-stars {
+  .custom-rating-stars {
     color: #f3c621;
     font-size: 20px;
     margin-bottom: 5px;
   }
-  .fake-rating-count {
+  .custom-rating-count {
     color: #666;
     font-size: 14px;
   }
-  .fake-review-item {
+  .custom-review-item {
     padding: 20px 0;
     border-bottom: 1px solid #f5f5f5;
   }
-  .fake-review-header {
+  .custom-review-header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
   }
-  .fake-review-author {
+  .custom-review-author {
     font-weight: bold;
     font-size: 16px;
   }
-  .fake-review-date {
+  .custom-review-date {
     color: #999;
     font-size: 14px;
   }
-  .fake-review-stars {
+  .custom-review-stars {
     color: #f3c621;
     font-size: 14px;
     margin-bottom: 8px;
   }
-  .fake-review-body {
+  .custom-review-body {
     font-size: 15px;
     line-height: 1.6;
     color: #333;
     margin-bottom: 10px;
   }
-  .fake-review-images {
+  .custom-review-images {
     display: flex;
     gap: 10px;
     margin-top: 10px;
   }
-  .fake-review-image {
+  .custom-review-image {
     width: 80px;
     height: 80px;
     object-fit: cover;
@@ -126,20 +126,26 @@
   .spr-review-header-byline { font-family: var(--g-font-2, sans-serif) !important; font-size: 14px !important; color: #999 !important; opacity: 1 !important; font-style: normal !important; }
   .spr-review-content-body { font-family: var(--g-font-2, sans-serif) !important; font-size: 15px !important; line-height: 1.6 !important; color: #333 !important; }
   .spr-icon { color: #f3c621 !important; font-size: 14px !important; }
+  /* Hide default Shopify Review Summary elements to avoid 0/5 conflict */
+  .spr-header-title,
+  .spr-summary-caption,
+  .spr-starrating {
+    display: none !important;
+  }
 </style>
 
-<div class="fake-reviews-container">
-  <div class="fake-review-summary">
-    <div class="fake-rating-score">{{ rating_score }}</div>
+<div class="custom-reviews-container">
+  <div class="custom-review-summary">
+    <div class="custom-rating-score">{{ rating_score }}</div>
     <div>
-      <div class="fake-rating-stars">
+      <div class="custom-rating-stars">
         {% if rating_score == 5.0 %}★★★★★{% else %}★★★★☆{% endif %}
       </div>
-      <div class="fake-rating-count">Based on {{ review_count }} reviews</div>
+      <div class="custom-rating-count">Based on {{ review_count }} reviews</div>
     </div>
   </div>
 
-  <div class="fake-reviews-list">
+  <div class="custom-reviews-list">
     {% for i in (1..num_reviews_to_show) %}
       {% comment %} Pseudo-random index selection {% endcomment %}
       {% assign index_seed = random_seed | plus: i | times: 17 %}
@@ -153,25 +159,25 @@
       {% comment %} Image logic: Show image for 1 in 3 reviews {% endcomment %}
       {% assign show_image = index_seed | modulo: 3 %}
       
-      <div class="fake-review-item">
-        <div class="fake-review-header">
-          <div class="fake-review-author">
+      <div class="custom-review-item">
+        <div class="custom-review-header">
+          <div class="custom-review-author">
             {{ names[name_index] }}
             <span class="verified-badge">
               <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
               Verified Buyer
             </span>
           </div>
-          <div class="fake-review-date">{{ days_ago }} {% if days_ago == 1 %}day{% else %}days{% endif %} ago</div>
+          <div class="custom-review-date">{{ days_ago }} {% if days_ago == 1 %}day{% else %}days{% endif %} ago</div>
         </div>
-        <div class="fake-review-stars">★★★★★</div>
-        <div class="fake-review-body">
+        <div class="custom-review-stars">★★★★★</div>
+        <div class="custom-review-body">
           <strong>{{ titles[title_index] }}</strong><br>
           {{ bodies[body_index] }}
         </div>
         {% if show_image == 0 %}
-        <div class="fake-review-images">
-          <img src="https://picsum.photos/200/200?random={{ index_seed }}" class="fake-review-image" alt="Review image">
+        <div class="custom-review-images">
+          <img src="https://picsum.photos/200/200?random={{ index_seed }}" class="custom-review-image" alt="Review image">
         </div>
         {% endif %}
       </div>
