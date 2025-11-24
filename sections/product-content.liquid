@@ -13,14 +13,6 @@
         assign right_size = 'col-md-5 col-12'
         
     endcase
-
-    for block in section.blocks
-        if block.type == 'related-product'
-            assign validRelated = left_size
-        else
-            assign validRelated = 'col-md-9 col-12'
-        endif
-    endfor
 -%}
 <style>
   @media (min-width:768px){
@@ -98,25 +90,6 @@
                     {%- endfor -%}
                 </div>
             </div>
-            
-            {%- for block in section.blocks -%}
-                {%- if block.type == 'related-product' -%}
-                    <div class="{{ right_size }}" data-aos-delay="200" data-aos="{{ section.settings.animation }}" >
-                        <div class="product-block product-related">
-                            {%- if block.settings.title_heading != blank -%}
-                            <h5 class="mb-4">{{ block.settings.title_heading }}</h5>
-                            {%- endif -%}
-                            <div class="row">
-                            {%- for product in block.settings.product_list limit: 3 -%}
-                                <div class="col-lg col-6">
-                                {%- render 'product-grid-buywith', product: product -%}
-                                </div>
-                            {%- endfor -%}
-                            </div>
-                        </div>
-                    </div>
-                {%- endif -%}
-            {%- endfor -%}
         </div>
     </div>
 </div>
