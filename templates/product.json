@@ -59,7 +59,7 @@
         "11f6643a-6bb6-4db9-a512-9c0eefc8c3b8": {
           "type": "countdown",
           "settings": {
-            "title_heading": "ðŸ”¥ Sale ends in !"
+            "title_heading": "🔥 Sale ends in !"
           }
         },
         "1431e891-e819-4fa1-8416-0cb3956f0e39": {
@@ -122,7 +122,7 @@
         "2cf20ef7-ba29-4dd5-8c98-df0b96ba3c5b": {
           "type": "text",
           "settings": {
-            "text": "ðŸ”¥Â  30 sold in last 18 hours",
+            "text": "🔥 30 sold in last 18 hours",
             "text_style": "body"
           }
         },
