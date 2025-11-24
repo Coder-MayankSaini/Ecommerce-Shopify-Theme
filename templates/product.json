@@ -18,10 +18,6 @@
             "e_label": true
           }
         },
-        "custom-review-block-main": {
-          "type": "review",
-          "settings": {}
-        },
         "c5c11045-e3b5-47e4-80d1-25e86ec844cc": {
           "type": "price",
           "settings": {}
@@ -180,7 +176,6 @@
       },
       "block_order": [
         "989bce2f-7961-4267-8e6c-40ff4bb0ed64",
-        "custom-review-block-main",
         "c5c11045-e3b5-47e4-80d1-25e86ec844cc",
         "1affb493-1e14-4893-9876-be8d348ee475",
         "ff32ea77-bcea-43d3-8e38-55894c9d938a",
