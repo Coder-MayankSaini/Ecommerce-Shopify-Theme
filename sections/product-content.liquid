@@ -91,7 +91,7 @@
                                 </div>
                             {%- when 'review' -%}
                                 <div class="tab-pane fade {{ activetab }}" id="gtab{{ block.id }}" role="tabpanel">
-                                    {% render 'fake-reviews' %}
+                                    {% render 'custom-reviews', product: product %}
                                     <div id="shopify-product-reviews" data-id="{{ product.id }}">{{ product.metafields.spr.reviews }}</div>
                                 </div>
                         {%- endcase -%}
