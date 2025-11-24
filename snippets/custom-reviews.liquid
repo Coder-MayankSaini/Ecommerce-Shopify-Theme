@@ -156,9 +156,6 @@
       {% comment %} Date logic: 1 to 30 days ago {% endcomment %}
       {% assign days_ago = index_seed | modulo: 30 | plus: 1 %}
       
-      {% comment %} Image logic: Show image for 1 in 3 reviews {% endcomment %}
-      {% assign show_image = index_seed | modulo: 3 %}
-      
       <div class="custom-review-item">
         <div class="custom-review-header">
           <div class="custom-review-author">
@@ -175,11 +172,6 @@
           <strong>{{ titles[title_index] }}</strong><br>
           {{ bodies[body_index] }}
         </div>
-        {% if show_image == 0 %}
-        <div class="custom-review-images">
-          <img src="https://picsum.photos/200/200?random={{ index_seed }}" class="custom-review-image" alt="Review image">
-        </div>
-        {% endif %}
       </div>
     {% endfor %}
   </div>
