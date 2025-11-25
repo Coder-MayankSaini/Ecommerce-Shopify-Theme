@@ -51,10 +51,7 @@
                                 <a class="nav-item nav-link {{ active }} disabled-anchor" href="#gtab{{ block.id }}" data-toggle="tab" role="tab" aria-selected="true">
                                     {{ block.settings.title_tab | default: 'Title Content' }}
                                 </a>
-                            {%- when 'review' -%}
-                                    <a class="nav-item nav-link {{ active }} disabled-anchor" href="#gtab{{ block.id }}" data-toggle="tab" role="tab" aria-selected="true">
-                                        {{ block.settings.title_tab | default: 'Reviews' }}
-                                    </a>
+
                             {%- endcase -%}
                     {%- endfor -%}
                 </div>
@@ -81,11 +78,7 @@
                                     {{ block.settings.answer_content }}
                                     {{ block.settings.page.content }}
                                 </div>
-                            {%- when 'review' -%}
-                                <div class="tab-pane fade {{ activetab }}" id="gtab{{ block.id }}" role="tabpanel">
-                                    {% render 'custom-reviews', product: product %}
-                                    <div id="shopify-product-reviews" data-id="{{ product.id }}" style="display: none !important;">{{ product.metafields.spr.reviews }}</div>
-                                </div>
+
                         {%- endcase -%}
                     {%- endfor -%}
                 </div>
@@ -345,19 +338,7 @@
         }
       ]
     },
-    {
-      "type": "review",
-      "name": "Review",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "title_tab",
-          "label": "Heading",
-          "default": "Review"
-        }
-      ]
-    }
+
   ]
 }
 {% endschema %}
