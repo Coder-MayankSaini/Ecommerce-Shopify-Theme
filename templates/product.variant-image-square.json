@@ -233,12 +233,6 @@
             "page": "material"
           }
         },
-        "147e9960-c5fe-44f4-8469-9583a9752a0a": {
-          "type": "review",
-          "settings": {
-            "title_tab": "Reviews"
-          }
-        },
         "2e69c5c0-ab83-4cda-9c38-1aaab6fdf1cc": {
           "type": "related-product",
           "disabled": true,
@@ -254,7 +248,6 @@
       "block_order": [
         "6889c9ba-caef-4edd-9757-6711505cb095",
         "b69a53cf-5bc1-4b18-add3-92af436f966c",
-        "147e9960-c5fe-44f4-8469-9583a9752a0a",
         "2e69c5c0-ab83-4cda-9c38-1aaab6fdf1cc"
       ],
       "settings": {
