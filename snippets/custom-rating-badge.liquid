@@ -24,10 +24,12 @@
   {% assign review_count = 113 %}
 {%- endif -%}
 
-<div class="custom-rating-badge" style="display: flex; align-items: center; margin-bottom: 10px;">
-  <span class="custom-stars" style="color: #f3c621; font-size: 16px; margin-right: 5px;">
-    {% if rating_score == 5.0 %}★★★★★{% else %}★★★★☆{% endif %}
-  </span>
-  <span class="custom-score" style="font-weight: bold; color: #333; margin-right: 5px;">{{ rating_score }}</span>
-  <span class="custom-text" style="color: #666; font-size: 14px;">({{ review_count }} reviews)</span>
+<div class="custom-rating-badge" style="display: flex; align-items: center; margin-bottom: 15px;">
+  <span class="custom-score" style="font-weight: bold; color: #333; font-size: 24px; margin-right: 10px; line-height: 1;">{{ rating_score }}</span>
+  <div style="display: flex; flex-direction: column;">
+    <span class="custom-stars" style="color: #f3c621; font-size: 14px; line-height: 1; margin-bottom: 2px;">
+      {% if rating_score == 5.0 %}★★★★★{% else %}★★★★☆{% endif %}
+    </span>
+    <span class="custom-text" style="color: #666; font-size: 12px; line-height: 1;">Based on {{ review_count }} reviews</span>
+  </div>
 </div>
