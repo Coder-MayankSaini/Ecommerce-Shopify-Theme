@@ -277,7 +277,8 @@
           </div>
           {% endif %}
           <div class="review">
-            <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+            {% render \'custom-rating-badge\', product: product %}
+            <span class="shopify-product-reviews-badge" data-id="{{ product.id }}" style="display: none !important;"></span>
           </div>
             <ul class="pb-3 product-single__meta-list list--inline{% if shop.taxes_included or shop.shipping_policy.body != blank %} product-single__price-container{% endif %}">
               <li>
