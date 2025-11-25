@@ -489,53 +489,6 @@
         "marginmobile": "0px 0px 0px 0px"
       }
     },
-    "f9d11058-e5e4-4a6a-8134-4c101e672497": {
-      "type": "backgroundvideo",
-      "blocks": {
-        "2352b9c6-39ce-4ee2-809b-797a7430f4d9": {
-          "type": "paragraph",
-          "settings": {
-            "subtext": "\u2605\u2605\u2605\u2605\u2605 3000+ Reviews"
-          }
-        },
-        "68824fd8-5645-4fc3-9b30-ba506d567226": {
-          "type": "heading",
-          "settings": {
-            "title": "For the Explorers.",
-            "size_text": "h1"
-          }
-        },
-        "32234901-bf48-4736-bf33-224a93b7b36b": {
-          "type": "paragraph",
-          "settings": {
-            "subtext": "Weekends are better with friends"
-          }
-        }
-      },
-      "block_order": [
-        "2352b9c6-39ce-4ee2-809b-797a7430f4d9",
-        "68824fd8-5645-4fc3-9b30-ba506d567226",
-        "32234901-bf48-4736-bf33-224a93b7b36b"
-      ],
-      "settings": {
-        "animation": "",
-        "setwidth": "full",
-        "height_section": "550px",
-        "height_section_mobile": "450px",
-        "align": "center",
-        "position_text": "mid-center",
-        "link_video": "https://cdn.shopify.com/videos/c/o/v/4e3dd5dc563943e0bbadac381330b634.mp4",
-        "bgsection": "#ffffff",
-        "bg_overlay": "#000000",
-        "gradient_bg": "",
-        "opacity_bg_overlay": 0.5,
-        "title_color": "#ffffff",
-        "bg_box": "#ffffff",
-        "opacity_bgbox": 0,
-        "marginsection": "0px 0px 0px 0px",
-        "marginmobile": "0px 0px 0px 0px"
-      }
-    },
     "bcb1cba3-80fc-49a2-a033-40cf0618e9c8": {
       "type": "faq-accordion",
       "blocks": {
@@ -673,7 +626,6 @@
     "30d4e0bd-da81-4442-b71d-c0fd1f5b3906",
     "c5690cdb-c04d-45fd-9c6c-cfee011363ca",
     "70b7f2d2-4c12-4305-88bd-da89e2d18d5b",
-    "f9d11058-e5e4-4a6a-8134-4c101e672497",
     "bcb1cba3-80fc-49a2-a033-40cf0618e9c8",
     "2882975a-3f6b-438d-9a02-bfeacf954e1a",
     "product-recommendations",
