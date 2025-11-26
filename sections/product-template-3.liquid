@@ -223,6 +223,8 @@
         <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
         <div class="product-single__meta small--text-center">
           <h1 itemprop="name" class="product-single__title">{{ product.title }}<sup><span id="ProductSaleTag-{{ section.id }}" class="{% unless product.compare_at_price > product.price %}hide{% endunless %}">
+          <h1 style="color: green; border: 5px solid green; font-size: 30px;">TEST DEBUG TEMPLATE 3</h1>
+          {% render 'custom-rating-badge', product: product %}
             <span class="product-tag gradient-theme">
               {{ 'products.product.on_sale' | t }}
             </span>
