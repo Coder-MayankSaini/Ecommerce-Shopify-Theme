@@ -154,7 +154,8 @@
   }
 
 </style>
-<div class="js-recently-view" itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true" data-ajax="true" data-stock="{{ section.settings.stock_enable }}" data-handle="{{product.handle}}">
+<div class="container js-recently-view" itemscope itemtype="http://schema.org/Product" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-id="product-template-2" data-section-type="product" data-enable-history-state="true" data-ajax="true" data-stock="{{ section.settings.stock_enable }}" data-handle="{{product.handle}}">
+  <div style="background:blue;color:white;font-size:20px;padding:20px;border:5px solid black;z-index:99999;position:relative;">TOP LEVEL DEBUG: PRODUCT TEMPLATE 2 IS ACTIVE</div>
   {% assign product_image_size = '480x480' %}
   {% assign current_variant = product.selected_or_first_available_variant %}
   <meta itemprop="name" content="{{ product.title }}">

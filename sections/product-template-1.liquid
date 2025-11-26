@@ -393,6 +393,7 @@
   data-handle="{{ product.handle }}"
   data-autoplay="{{ section.settings.e_autoplay }}"
   data-videoloop="{{ section.settings.e_loop }}">
+  <div style="background:red;color:white;font-size:20px;padding:20px;border:5px solid black;z-index:99999;position:relative;">TOP LEVEL DEBUG: PRODUCT TEMPLATE 1 IS ACTIVE</div>
   {%- liquid
     assign current_variant = product.selected_or_first_available_variant
     assign left_size = 'col-md-6 col-12'
