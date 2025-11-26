@@ -452,9 +452,9 @@
                 {% render 'product-label' %}
                 {%- endif -%}
               <h1 itemprop="name" class="product-single__title">
-                {{ product.title }}
+                {{ product.title }} - EDITED
               </h1>
-              <h1 style="color: red; border: 5px solid red; position: fixed; top: 100px; left: 0; z-index: 9999; background: white;">TEST DEBUG TEMPLATE 1</h1>
+              <div>SIMPLE DEBUG TEXT HERE</div>
               {% render 'custom-rating-badge', product: product %}
             </div>
             {%- when 'shortdesc' -%}
