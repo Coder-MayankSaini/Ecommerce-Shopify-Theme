@@ -25,7 +25,12 @@
   }
 </style>
 <div class="section-{{ section.id }} product-content customstyle{{ section.id }}" data-aos="{{ section.settings.animation }}" >
-  <div style="background:purple;color:white;font-size:20px;padding:20px;border:5px solid black;z-index:99999;position:relative;">DEBUG: PRODUCT CONTENT SECTION IS ACTIVE</div>
+  <div style="background:purple;color:white;font-size:20px;padding:20px;border:5px solid black;z-index:99999;position:relative;">
+  DEBUG: PRODUCT CONTENT ACTIVE.<br>
+  TEMPLATE: {{ template }}<br>
+  TEMPLATE SUFFIX: {{ template.suffix }}<br>
+  PAGE TYPE: {{ request.page_type }}
+</div>
   {%- render 'style-section' -%}  
   <div class="container">
         <div class="row justify-content-center">
