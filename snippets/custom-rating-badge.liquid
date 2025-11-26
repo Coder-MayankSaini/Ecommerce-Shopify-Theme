@@ -35,7 +35,8 @@
   {% assign review_count = 25 | plus: count_mod %}
 {% endif %}
 
-<div class="custom-rating-badge" style="display: flex; align-items: center; margin-bottom: 15px; cursor: pointer;" onclick="document.querySelector('.custom-reviews-container').scrollIntoView({behavior: 'smooth'});">
+<div class="custom-rating-badge" style="display: flex !important; align-items: center; margin-bottom: 15px; cursor: pointer; border: 1px solid red;" onclick="document.querySelector('.custom-reviews-container').scrollIntoView({behavior: 'smooth'});">
+  <span style="color:red; font-size: 10px;">DEBUG: BADGE RENDERED</span>
   <span class="custom-score" style="font-weight: bold; color: #333; font-size: 24px; margin-right: 10px; line-height: 1;">{{ rating_score }}</span>
   <div style="display: flex; flex-direction: column;">
     <span class="custom-stars" style="color: #f3c621; font-size: 14px; line-height: 1; margin-bottom: 2px;">
