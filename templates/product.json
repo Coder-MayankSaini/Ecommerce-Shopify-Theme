@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -50,7 +59,7 @@
         "11f6643a-6bb6-4db9-a512-9c0eefc8c3b8": {
           "type": "countdown",
           "settings": {
-            "title_heading": "\ud83d\udd25 Sale ends in !"
+            "title_heading": "🔥 Sale ends in !"
           }
         },
         "1431e891-e819-4fa1-8416-0cb3956f0e39": {
@@ -105,14 +114,14 @@
             "fake_view_min": 12,
             "fake_view_max": 30,
             "fake_view_duration": 3,
-            "fake_view_text_prefix": "\ud83d\udc40",
+            "fake_view_text_prefix": "👀",
             "fake_view_text_suffix": "customers are viewing this product"
           }
         },
         "2cf20ef7-ba29-4dd5-8c98-df0b96ba3c5b": {
           "type": "text",
           "settings": {
-            "text": "\ud83d\udd25 30 sold in last 18 hours",
+            "text": "🔥 30 sold in last 18 hours",
             "text_style": "body"
           }
         },
@@ -155,10 +164,15 @@
               "awesome-aluminum-plate"
             ]
           }
+        },
+        "areviews_reviews_importer_areviews_title_rating_C5D2C1": {
+          "type": "shopify://apps/areviews-reviews-importer/blocks/AreviewsTitleRating/ab0ec5fe-c95b-4fd6-bfb8-db2a30d0756f",
+          "settings": {}
         }
       },
       "block_order": [
         "989bce2f-7961-4267-8e6c-40ff4bb0ed64",
+        "areviews_reviews_importer_areviews_title_rating_C5D2C1",
         "c5c11045-e3b5-47e4-80d1-25e86ec844cc",
         "1affb493-1e14-4893-9876-be8d348ee475",
         "ff32ea77-bcea-43d3-8e38-55894c9d938a",
@@ -357,6 +371,24 @@
         "marginmobile": "0px 0px 0px 0px",
         "bgsection": "#ffffff"
       }
+    },
+    "areviews_1764182605_e892b9": {
+      "type": "apps",
+      "blocks": {
+        "areviews_reviews_importer_areviews_display_reviews_26924B": {
+          "type": "shopify://apps/areviews-reviews-importer/blocks/AreviewsDisplayReviews/ab0ec5fe-c95b-4fd6-bfb8-db2a30d0756f",
+          "settings": {
+            "hide_areviews_title_rating": false,
+            "areviews_theme_font": "inherit",
+            "areviews_stars_colors": "#f3c621",
+            "areviews_write_reviews_botton_color": "#373737"
+          }
+        }
+      },
+      "block_order": [
+        "areviews_reviews_importer_areviews_display_reviews_26924B"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -368,6 +400,7 @@
     "be561305-5bee-4018-a668-c8770086ba5b",
     "product-recent",
     "17638917813f6a635e",
-    "bcb1cba3-80fc-49a2-a033-40cf0618e9c8"
+    "bcb1cba3-80fc-49a2-a033-40cf0618e9c8",
+    "areviews_1764182605_e892b9"
   ]
 }
