@@ -360,13 +360,6 @@
     }
   },
   "order": [
-    "main",
-    "custom-reviews-section",
-    "product-requently",
-    "product-recommendations",
-    "be561305-5bee-4018-a668-c8770086ba5b",
-    "product-recent",
-    "17638917813f6a635e",
-    "bcb1cba3-80fc-49a2-a033-40cf0618e9c8"
+    "main"
   ]
 }
