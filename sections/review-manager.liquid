@@ -1,0 +1,164 @@
+<div class="container" style="padding: 40px 0;">
+  <div class="review-manager-wrapper" style="max-width: 800px; margin: 0 auto;">
+    <h1 class="text-center mb-4">Review Data Generator</h1>
+    <p class="text-center mb-5">Use this tool to generate the JSON data for your product reviews. Add reviews one by one, then copy the generated code and paste it into the <strong>custom.fake_reviews</strong> Metafield of your product.</p>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="reviewName">Reviewer Name</label>
+          <input type="text" id="reviewName" class="form-control product-form__input" placeholder="e.g. John Doe">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="reviewDate">Date (Optional)</label>
+          <input type="date" id="reviewDate" class="form-control product-form__input">
+          <small class="text-muted">Leave blank for "Today"</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="reviewTitle">Review Title</label>
+      <input type="text" id="reviewTitle" class="form-control product-form__input" placeholder="e.g. Amazing Product!">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="reviewBody">Review Content</label>
+      <textarea id="reviewBody" class="form-control product-form__input" rows="3" placeholder="Write the review here..."></textarea>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="reviewRating">Rating</label>
+          <select id="reviewRating" class="form-control product-form__input">
+            <option value="5">5 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="2">2 Stars</option>
+            <option value="1">1 Star</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group mb-3">
+          <label for="reviewImage">Image URL (Optional)</label>
+          <input type="text" id="reviewImage" class="form-control product-form__input" placeholder="https://...">
+          <small class="text-muted">Upload image to Shopify Files first, then paste URL here.</small>
+        </div>
+      </div>
+    </div>
+
+    <button id="addReviewBtn" class="btn btn-theme btn--full mb-5">Add Review to List</button>
+
+    <hr>
+
+    <h3 class="mb-3">Current Reviews List (<span id="reviewCount">0</span>)</h3>
+    <div id="reviewsList" class="mb-4" style="background: #f9f9f9; padding: 20px; border-radius: 8px; max-height: 300px; overflow-y: auto;">
+      <p class="text-muted text-center">No reviews added yet.</p>
+    </div>
+
+    <div class="result-section">
+      <h3 class="mb-3">Generated JSON Code</h3>
+      <textarea id="jsonOutput" class="form-control mb-3" rows="6" readonly style="font-family: monospace; font-size: 12px; background: #eee;"></textarea>
+      <button id="copyBtn" class="btn btn-outline btn--full">Copy to Clipboard</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const reviews = [];
+    const addBtn = document.getElementById('addReviewBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const reviewsList = document.getElementById('reviewsList');
+    const jsonOutput = document.getElementById('jsonOutput');
+    const countSpan = document.getElementById('reviewCount');
+
+    addBtn.addEventListener('click', function() {
+      const name = document.getElementById('reviewName').value.trim();
+      const title = document.getElementById('reviewTitle').value.trim();
+      const body = document.getElementById('reviewBody').value.trim();
+      const rating = document.getElementById('reviewRating').value;
+      const date = document.getElementById('reviewDate').value;
+      const image = document.getElementById('reviewImage').value.trim();
+
+      if (!name || !title || !body) {
+        alert('Please fill in Name, Title, and Content.');
+        return;
+      }
+
+      const review = {
+        name: name,
+        title: title,
+        body: body,
+        rating: parseInt(rating),
+        date: date || new Date().toISOString().split('T')[0],
+        image: image || null
+      };
+
+      reviews.push(review);
+      updateUI();
+      clearForm();
+    });
+
+    copyBtn.addEventListener('click', function() {
+      jsonOutput.select();
+      document.execCommand('copy');
+      const originalText = copyBtn.innerText;
+      copyBtn.innerText = 'Copied!';
+      setTimeout(() => copyBtn.innerText = originalText, 2000);
+    });
+
+    function updateUI() {
+      countSpan.innerText = reviews.length;
+      jsonOutput.value = JSON.stringify(reviews, null, 2);
+      
+      if (reviews.length === 0) {
+        reviewsList.innerHTML = '<p class="text-muted text-center">No reviews added yet.</p>';
+        return;
+      }
+
+      let html = '';
+      reviews.forEach((r, index) => {
+        html += `
+          <div class="review-item" style="border-bottom: 1px solid #ddd; padding: 10px 0; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <strong>${r.name}</strong> - ${r.rating}★<br>
+              <small>${r.title}</small>
+            </div>
+            <button class="btn btn-sm btn-danger" onclick="removeReview(${index})">Remove</button>
+          </div>
+        `;
+      });
+      reviewsList.innerHTML = html;
+    }
+
+    window.removeReview = function(index) {
+      reviews.splice(index, 1);
+      updateUI();
+    };
+
+    function clearForm() {
+      document.getElementById('reviewName').value = '';
+      document.getElementById('reviewTitle').value = '';
+      document.getElementById('reviewBody').value = '';
+      document.getElementById('reviewImage').value = '';
+      // Keep date and rating as they might be repeated
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Review Manager",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Review Manager"
+    }
+  ]
+}
+{% endschema %}

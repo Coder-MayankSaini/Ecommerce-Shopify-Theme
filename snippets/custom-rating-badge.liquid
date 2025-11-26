@@ -1,35 +1,45 @@
-{% comment %} Random Logic based on Product ID - Must match snippets/fake-reviews.liquid {% endcomment %}
-{% assign product_id_num = product.id | default: 123456789 %}
-{% assign random_seed = product_id_num | modulo: 1000 %}
+{% comment %} 
+  Custom Rating Badge 
+  Prioritizes Metafield data (custom.fake_reviews), falls back to random generation.
+{% endcomment %}
 
-{% comment %} Calculate Rating {% endcomment %}
-{% assign rating_mod = random_seed | modulo: 6 %}
-{% case rating_mod %}
-  {% when 0 %}{% assign rating_score = 4.8 %}
-  {% when 1 %}{% assign rating_score = 4.9 %}
-  {% when 2 %}{% assign rating_score = 5.0 %}
-  {% when 3 %}{% assign rating_score = 4.7 %}
-  {% when 4 %}{% assign rating_score = 4.6 %}
-  {% else %}{% assign rating_score = 4.9 %}
-{% endcase %}
+{% assign reviews_metafield = product.metafields.custom.fake_reviews.value %}
+{% assign use_metafield = false %}
 
-{% comment %} Calculate Review Count {% endcomment %}
-{% assign count_mod = random_seed | modulo: 125 %}
-{% assign review_count = 25 | plus: count_mod %}
+{% if reviews_metafield != blank and reviews_metafield.size > 0 %}
+  {% assign use_metafield = true %}
+  {% assign total_rating = 0.0 %}
+  {% assign review_count = reviews_metafield.size %}
+  
+  {% for review in reviews_metafield %}
+    {% assign total_rating = total_rating | plus: review.rating %}
+  {% endfor %}
+  
+  {% assign rating_score = total_rating | divided_by: review_count | round: 1 %}
+{% else %}
+  {% comment %} Random Logic Fallback {% endcomment %}
+  {% assign product_id_num = product.id | default: 123456789 %}
+  {% assign random_seed = product_id_num | modulo: 1000 %}
+  
+  {% assign rating_mod = random_seed | modulo: 6 %}
+  {% case rating_mod %}
+    {% when 0 %}{% assign rating_score = 4.8 %}
+    {% when 1 %}{% assign rating_score = 4.9 %}
+    {% when 2 %}{% assign rating_score = 5.0 %}
+    {% when 3 %}{% assign rating_score = 4.7 %}
+    {% when 4 %}{% assign rating_score = 4.6 %}
+    {% else %}{% assign rating_score = 4.9 %}
+  {% endcase %}
+  
+  {% assign count_mod = random_seed | modulo: 125 %}
+  {% assign review_count = 25 | plus: count_mod %}
+{% endif %}
 
-{%- if rating_score == blank -%}
-  {% assign rating_score = 4.8 %}
-{%- endif -%}
-{%- if review_count == blank -%}
-  {% assign review_count = 113 %}
-{%- endif -%}
-
-<div style="background: red; color: white; padding: 5px; font-weight: bold;">DEBUG: BADGE SNIPPET LOADED</div>
-<div class="custom-rating-badge" style="display: flex; align-items: center; margin-bottom: 15px;">
+<div class="custom-rating-badge" style="display: flex; align-items: center; margin-bottom: 15px; cursor: pointer;" onclick="document.querySelector('.custom-reviews-container').scrollIntoView({behavior: 'smooth'});">
   <span class="custom-score" style="font-weight: bold; color: #333; font-size: 24px; margin-right: 10px; line-height: 1;">{{ rating_score }}</span>
   <div style="display: flex; flex-direction: column;">
     <span class="custom-stars" style="color: #f3c621; font-size: 14px; line-height: 1; margin-bottom: 2px;">
-      {% if rating_score == 5.0 %}★★★★★{% else %}★★★★☆{% endif %}
+      {% if rating_score >= 4.8 %}★★★★★{% else %}★★★★☆{% endif %}
     </span>
     <span class="custom-text" style="color: #666; font-size: 12px; line-height: 1;">Based on {{ review_count }} reviews</span>
   </div>
