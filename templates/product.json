@@ -296,8 +296,8 @@
         "e_small": true,
         "left_html": "",
         "e_right": false,
-        "paddingsection": "100px 0px 100px 0px",
-        "paddingmobile": "60px 0px 60px 0px",
+        "paddingsection": "20px 0px 60px 0px",
+        "paddingmobile": "20px 0px 40px 0px",
         "marginsection": "0px 0px 0px 0px",
         "marginmobile": "0px 0px 0px 0px"
       }
@@ -341,8 +341,8 @@
         "des": "",
         "align-heading": "center",
         "limit": 6,
-        "paddingsection": "0px 0px 60px 0px",
-        "paddingmobile": "40px 0px 40px 0px",
+        "paddingsection": "0px 0px 20px 0px",
+        "paddingmobile": "20px 0px 20px 0px",
         "marginsection": "0px 0px 0px 0px",
         "marginmobile": "0px 0px 0px 0px"
       }
@@ -352,7 +352,7 @@
       "settings": {
         "animation": "",
         "paddingsection": "0px 0px 0px 0px",
-        "paddingmobile": "60px 0px 60px 0px",
+        "paddingmobile": "0px 0px 0px 0px",
         "marginsection": "0px 0px 0px 0px",
         "marginmobile": "0px 0px 0px 0px",
         "bgsection": "#ffffff"
