@@ -50,12 +50,11 @@
         "11f6643a-6bb6-4db9-a512-9c0eefc8c3b8": {
           "type": "countdown",
           "settings": {
-            "title_heading": "🔥 Sale ends in !"
+            "title_heading": "\ud83d\udd25 Sale ends in !"
           }
         },
         "1431e891-e819-4fa1-8416-0cb3956f0e39": {
           "type": "description",
-          "disabled": true,
           "settings": {
             "enable_tab": true,
             "title_tab": "Description"
@@ -106,14 +105,14 @@
             "fake_view_min": 12,
             "fake_view_max": 30,
             "fake_view_duration": 3,
-            "fake_view_text_prefix": "👀",
+            "fake_view_text_prefix": "\ud83d\udc40",
             "fake_view_text_suffix": "customers are viewing this product"
           }
         },
         "2cf20ef7-ba29-4dd5-8c98-df0b96ba3c5b": {
           "type": "text",
           "settings": {
-            "text": "🔥 30 sold in last 18 hours",
+            "text": "\ud83d\udd25 30 sold in last 18 hours",
             "text_style": "body"
           }
         },
@@ -156,13 +155,6 @@
               "awesome-aluminum-plate"
             ]
           }
-        },
-        "883720d7-3346-4495-85a0-add8b3d7a51f": {
-          "type": "trust-badge",
-          "settings": {
-            "trust-heading": "Guarantee safe checkout",
-            "width_image": 66
-          }
         }
       },
       "block_order": [
@@ -185,8 +177,7 @@
         "83a6f5b6-88e4-4eb3-9899-a085ea9c58bd",
         "2d534ed0-517d-48ca-8370-8659965f32c4",
         "a405ef88-bdbe-486d-9fb3-6c91aa4e1509",
-        "51f9d856-95f4-4741-bf4d-afe15438ff29",
-        "883720d7-3346-4495-85a0-add8b3d7a51f"
+        "51f9d856-95f4-4741-bf4d-afe15438ff29"
       ],
       "settings": {
         "setwidth": "container",
@@ -230,12 +221,6 @@
     "product-content": {
       "type": "product-content",
       "blocks": {
-        "6889c9ba-caef-4edd-9757-6711505cb095": {
-          "type": "description",
-          "settings": {
-            "title_tab": "Description"
-          }
-        },
         "b69a53cf-5bc1-4b18-add3-92af436f966c": {
           "type": "content",
           "settings": {
@@ -256,7 +241,6 @@
         }
       },
       "block_order": [
-        "6889c9ba-caef-4edd-9757-6711505cb095",
         "b69a53cf-5bc1-4b18-add3-92af436f966c",
         "86f16245-d6c0-4cfd-a4c8-f96a893dc128"
       ],
@@ -402,32 +386,6 @@
         "marginmobile": "0px 0px 0px 0px"
       }
     },
-    "2882975a-3f6b-438d-9a02-bfeacf954e1a": {
-      "type": "count-down",
-      "settings": {
-        "animation": "fade-up",
-        "setwidth": "container",
-        "bgsection": "#000000",
-        "bg_full": false,
-        "enable_padding": true,
-        "color": "#ffffff",
-        "e_blur": true,
-        "overlay": "#081625",
-        "opacity": 0.5,
-        "title": "Sale Event",
-        "size_text": "h3",
-        "des": "We've refreshed our sale with discounts of up to 50% on select styles.",
-        "data_countdown": "2025-05-11T00:00:00",
-        "e_button": true,
-        "txt_button": "Shop Collection",
-        "link_button": "",
-        "style_btn": "btn-outline btn-outline-white",
-        "paddingsection": "32px 0px 32px 0px",
-        "paddingmobile": "60px 0px 60px 0px",
-        "marginsection": "0px 0px 0px 0px",
-        "marginmobile": "0px 0px 0px 0px"
-      }
-    },
     "product-recommendations": {
       "type": "product-recommendations",
       "settings": {
@@ -491,11 +449,10 @@
     "custom-reviews-section",
     "product-requently",
     "c5690cdb-c04d-45fd-9c6c-cfee011363ca",
-    "bcb1cba3-80fc-49a2-a033-40cf0618e9c8",
-    "2882975a-3f6b-438d-9a02-bfeacf954e1a",
     "product-recommendations",
     "be561305-5bee-4018-a668-c8770086ba5b",
     "product-recent",
-    "17638917813f6a635e"
+    "17638917813f6a635e",
+    "bcb1cba3-80fc-49a2-a033-40cf0618e9c8"
   ]
 }
