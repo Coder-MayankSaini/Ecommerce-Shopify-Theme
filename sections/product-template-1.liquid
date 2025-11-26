@@ -412,9 +412,15 @@
     assign featured_img = current_variant.featured_image | default: product.featured_image 
 
     assign media_style = section.settings.media_style
-    assign needs_upload = product.tags contains 'needs_upload'
-    assign needs_text = product.tags contains 'needs_text'
   -%}
+  {% assign needs_upload = false %}
+  {% if product.tags contains 'needs_upload' %}
+    {% assign needs_upload = true %}
+  {% endif %}
+  {% assign needs_text = false %}
+  {% if product.tags contains 'needs_text' %}
+    {% assign needs_text = true %}
+  {% endif %}
   <meta itemprop="name" content="{{ product.title }}">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="{{ product.featured_image.src | image_url: width: 600, height: 600 }}">
@@ -454,7 +460,7 @@
               <h1 itemprop="name" class="product-single__title">
                 {{ product.title }} - EDITED
               </h1>
-              <div>SIMPLE DEBUG TEXT HERE</div>
+              <div style="background:yellow; color:black; padding:5px; border:1px solid black;">SIMPLE DEBUG TEXT HERE</div>
               {% render 'custom-rating-badge', product: product %}
             </div>
             {%- when 'shortdesc' -%}
