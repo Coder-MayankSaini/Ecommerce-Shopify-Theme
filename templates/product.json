@@ -221,14 +221,6 @@
     "product-content": {
       "type": "product-content",
       "blocks": {
-        "b69a53cf-5bc1-4b18-add3-92af436f966c": {
-          "type": "content",
-          "settings": {
-            "title_tab": "Material",
-            "answer_content": "",
-            "page": "material"
-          }
-        },
         "86f16245-d6c0-4cfd-a4c8-f96a893dc128": {
           "type": "related-product",
           "settings": {
@@ -241,7 +233,6 @@
         }
       },
       "block_order": [
-        "b69a53cf-5bc1-4b18-add3-92af436f966c",
         "86f16245-d6c0-4cfd-a4c8-f96a893dc128"
       ],
       "settings": {
