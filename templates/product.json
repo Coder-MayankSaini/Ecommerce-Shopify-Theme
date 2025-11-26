@@ -361,6 +361,7 @@
   },
   "order": [
     "main",
+    "product-content",
     "custom-reviews-section",
     "product-requently",
     "product-recommendations",
